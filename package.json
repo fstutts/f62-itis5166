@@ -1,0 +1,24 @@
+{
+  "name": "f62",
+  "version": "1.0.0",
+  "description": "F62 - Full Stack React + Node.js + MongoDB Application",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"sudo npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "dev-no-sudo": "concurrently \"npm run server\" \"npm run client-alt\"",
+    "client-alt": "cd client && PORT=8080 npm start",
+    "build": "cd client && npm run build",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "install-all": "npm run install-server && npm run install-client",
+    "start": "cd server && npm start"
+  },
+  "keywords": ["react", "nodejs", "mongodb", "fullstack", "spa"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
