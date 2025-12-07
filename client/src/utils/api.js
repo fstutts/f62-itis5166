@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 // Set the base URL based on environment
-const baseURL = process.env.REACT_APP_API_URL || 
-  (process.env.NODE_ENV === 'production' 
+const baseURL = process.env.REACT_APP_API_URL 
+  ? `${process.env.REACT_APP_API_URL}/api`
+  : (process.env.NODE_ENV === 'production' 
     ? 'https://f62-itis5166-production.up.railway.app/api'
     : 'http://localhost:3000/api'
   );
