@@ -12,6 +12,7 @@ const Summary = () => {
   useEffect(() => {
     const fetchChartData = async () => {
         if (!user) return;
+
         try { 
             const response = await api.get('/charts/summary-stats');
             setChartData(response.data);
@@ -20,7 +21,11 @@ const Summary = () => {
             console.error('Error fetching chart data:', error);
             setError('Failed to load chart data');
             setLoading(false);
-        }  }, [user]);
+        }
+    };
+
+    fetchChartData();
+  }, [user]);
 
   useEffect(() => {
     if (chartData && !loading) {

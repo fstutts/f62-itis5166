@@ -26,11 +26,6 @@ const Reports = () => {
 
     fetchReportsData();
   }, [user]);
-        }
-    };
-
-    fetchReportsData();
-  }, [user]);
 
   useEffect(() => {
     if (reportsData && !loading) {
