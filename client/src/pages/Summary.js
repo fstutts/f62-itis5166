@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import * as d3 from 'd3';
 import { AuthContext } from '../context/AuthContext';
 
@@ -12,23 +12,15 @@ const Summary = () => {
   useEffect(() => {
     const fetchChartData = async () => {
         if (!user) return;
-
         try { 
-            const token = localStorage.getItem('token');
-            const response = await axios.get('/api/charts/summary-stats', {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            const response = await api.get('/charts/summary-stats');
             setChartData(response.data);
             setLoading(false);
         } catch (error) {
             console.error('Error fetching chart data:', error);
             setError('Failed to load chart data');
             setLoading(false);
-        }
-    };
-
-    fetchChartData();
-  }, [user]);
+        }  }, [user]);
 
   useEffect(() => {
     if (chartData && !loading) {

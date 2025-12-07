@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import * as d3 from 'd3';
 import { AuthContext } from '../context/AuthContext';
 
@@ -14,16 +14,18 @@ const Reports = () => {
         if (!user) return;
 
         try {
-            const token = localStorage.getItem('token');
-            const response = await axios.get('/api/charts/reports-data', {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            const response = await api.get('/charts/reports-data');
             setReportsData(response.data);
             setLoading(false);
         } catch (error) {
             console.error('Error fetching reports data:', error);
             setError('Failed to load reports data', error);
             setLoading(false);
+        }
+    };
+
+    fetchReportsData();
+  }, [user]);
         }
     };
 
