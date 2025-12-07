@@ -1,20 +1,21 @@
 # Use Node.js official image
 FROM node:18-alpine
 
-# Set working directory to server
-WORKDIR /app/server
+# Set working directory
+WORKDIR /app
 
 # Copy server package files
-COPY server/package*.json ./
+COPY server/package*.json ./server/
 
-# Install dependencies
-RUN npm ci --only=production
+# Install dependencies in server directory
+RUN cd server && npm ci --only=production
 
 # Copy server source code
-COPY server/ ./
+COPY server/ ./server/
 
-# Expose port (Railway will set this automatically)
+# Expose port
 EXPOSE 3000
 
-# Start the application directly with node
+# Start the application
+WORKDIR /app/server
 CMD ["node", "index.js"]
