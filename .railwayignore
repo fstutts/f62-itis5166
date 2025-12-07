@@ -1,0 +1,6 @@
+package.json
+package-lock.json
+client/
+node_modules/
+.git/
+README.md

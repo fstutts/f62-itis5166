@@ -1,21 +1,12 @@
-# Use Node.js official image
 FROM node:18-alpine
 
-# Set working directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy server package files
-COPY server/package*.json ./server/
+COPY server/package*.json ./
+RUN npm install --only=production
 
-# Install dependencies in server directory
-RUN cd server && npm ci --only=production
+COPY server/ ./
 
-# Copy server source code
-COPY server/ ./server/
-
-# Expose port
 EXPOSE 3000
 
-# Start the application
-WORKDIR /app/server
 CMD ["node", "index.js"]
